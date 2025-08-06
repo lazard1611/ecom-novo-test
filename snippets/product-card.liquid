@@ -1,0 +1,25 @@
+<div class="product_card">
+    <picture class="product_card__picture">        
+        {% if product.featured_image != blank %}
+            <img
+                width="100%"
+                height="100%"
+                src="{{ product.featured_image |  image_url }}"
+                alt="{{ product.alt }}"
+                class="product_card__img"
+            >            
+        {% else %}                               
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}                            
+    </picture>
+
+    <div class="product_card__price">{{ product.title | escape }}</div>
+
+    {%- if product.title != blank -%}
+        <h3 class="product_card__title">{{ product.title | escape}}</h3>
+    {%- endif -%}
+
+    {%- if product.description != blank -%}
+        <div class="product_card__description">{{ product.description |  translate: 120 }}</div>
+    {%- endif -%}
+</div>

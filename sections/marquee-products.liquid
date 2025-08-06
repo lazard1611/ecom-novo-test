@@ -1,0 +1,102 @@
+{% if section.blocks.size > 0 %}
+    <link rel="stylesheet" href="{{ "marquee-products.css" | asset_url }}">
+
+    <div class="marquee_products__container">
+        {% if section.blocks.size != blank %}
+            <div class="swiper js-marquee-products">
+                <div class="swiper-wrapper">
+                    {% for block in section.blocks %}
+                        {%- assign autoplay_speed = section.settings.autoplay_speed | times: 1000 -%}
+                        <div data-swiper-autoplay={{ autoplay_speed }} class="marquee_products__item slide swiper-slide">
+                            {%- render 'product-card', product: block -%}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if section.blocks.size > 1 %}
+        <script type="module" src="{{ "marquee-products.js" | asset_url }}"></script>
+    {% endif %}
+{% endif %}
+
+{% schema %}
+    {
+        "name": "Marquee products",    
+        "class": "marquee_products",
+        "settings": [
+            {
+                "type": "range",
+                "id": "autoplay_speed",
+                "min": 0,
+                "max": 10,
+                "step": 1,            
+                "label": "Autoplay speed",
+                "default": 0
+            },
+            {
+                "type": "color",
+                "id": "background_color",
+                "label": "Background color",
+                "default": "#D9351F"
+            },
+            {
+                "type": "color",
+                "id": "border_color",
+                "label": "Border color",
+                "default": "#000000"
+            },
+            {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text color",
+                "default": "#000000"
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Product card",
+                "type": "block",
+                "limit": 6,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "product_id",
+                        "label": "Product ID (from Fake Store API)"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "image",
+                        "label": "Product Image"
+                    },                    
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Product Title"
+                    },
+                    {
+                        "type": "textarea",
+                        "id": "description",
+                        "label": "Short Description",
+                        "info": "Up to 120 characters"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Marquee products",
+                "blocks": [
+                        { "type": "block" },
+                        { "type": "block" },
+                        { "type": "block" },
+                        { "type": "block" },
+                        { "type": "block" },
+                        { "type": "block" }                        
+                    ]
+            }
+        ]        
+    }
+    {% endschema %}
+    
