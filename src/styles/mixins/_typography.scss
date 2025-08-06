@@ -1,0 +1,53 @@
+@use "../variables.scss" as *;
+@use './global-mixins.scss' as *;
+
+@mixin h1 {        
+    @include breakPoints($tablet, min) {
+        font-size: 100px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 54px;
+    }
+}
+
+@mixin h2 {        
+    @include breakPoints($tablet, min) {
+        font-size: 70px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 40px;
+    }
+}
+
+@mixin h3 {        
+    @include breakPoints($tablet, min) {
+        font-size: 60px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 30px;
+    }
+}
+
+@mixin h4 {        
+    @include breakPoints($tablet, min) {
+        font-size: 50px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 30px;
+    }
+}
+
+@mixin h5 {        
+    @include breakPoints($tablet, min) {
+        font-size: 40px;
+    }   
+
+    @include breakPoints($tablet) {
+        font-size: 25px;
+    }
+}
+

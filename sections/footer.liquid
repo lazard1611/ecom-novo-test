@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
+
+<div class="footer__wrapper">{{ section.settings.title }}</div>
+
+<script type="module" src="{{ 'footer.js' | asset_url }}"></script>
+
+{% schema %}
+{
+	"name": "Footer",
+	"class": "footer",
+	"tag": "footer",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="{{ 'ui-components.css' | asset_url }}">
+
+<div class="ui_components__wrap">
+    <div class="ui_components__block">
+        <div class="ui_components__title">Typography</div>
+        <div class="ui_components__row">
+            <div class="ui_components__item">
+                <h1>H1</h1>
+                <h2>H2</h2>
+                <h3>H3</h3>
+                <h4>H4</h4>
+                <h5>H5</h5>
+                <h6>H6</h6>
+            </div>            
+        </div>
+    </div>
+    <div class="ui_components__block">
+        <div class="ui_components__title">Buttons</div>
+        <div class="ui_components__row">
+            <div class="ui_components__item">
+                <button type="button" aria-label="button" class="btn_base">button</button>
+            </div>
+        </div>
+    </div>
+    <div class="ui_components__block">
+        <div class="ui_components__title">Form</div>
+        <div class="ui_components__row"> 
+            <div class="ui_components__item">
+                <div class="form_el_field">
+                    <label class="form_el_label">Label</label>
+                    <input type="text" class="form_el_default" placeholder="placeholder">           
+                </div>
+            </div>  
+            
+            <div class="ui_components__item">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "UI componens",
+        "class": "ui_components",
+        "tag": "section",
+        "settings": [
+            	
+        ],
+
+        "presets": [
+            {
+                "name": "UI componens",
+                "settings": {
+
+                }
+            }
+        ]
+    }
+{% endschema %}

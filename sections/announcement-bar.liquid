@@ -1,0 +1,104 @@
+{% if section.blocks.size > 0 %}
+    <link rel="stylesheet" href="{{ "announcement-bar.css" | asset_url }}">
+
+    <div class="announcement_bar__container" data-announcement-bar>
+        {% if section.blocks.size != blank %}
+            <div class="swiper" id="announcement-bar-swiper">
+                <div class="swiper-wrapper">
+                    {% for announce in section.blocks %}
+                        {% if announce.settings.announce != blank %}
+                            {%- assign autoplay_speed = section.settings.autoplay_speed | times: 1000 -%}
+                            <div data-swiper-autoplay={{ autoplay_speed }} class="announcement_bar__announce slide swiper-slide">{{ announce.settings.announce }}</div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if section.blocks.size > 1 %}
+        <script type="module" src="{{ "announcement-bar.js" | asset_url }}"></script>
+    {% endif %}
+{% endif %}
+
+<style>
+    .announcement_bar {
+        background-color: {{ section.settings.background_color }};
+        border-color: {{ section.settings.border_color }};
+    }
+
+    .announcement_bar__announce {
+        color: {{ section.settings.text_color }}
+    }
+</style>
+
+{% schema %}
+{
+    "name": "Announcement bar",    
+    "class": "announcement_bar",
+    "settings": [
+        {
+            "type": "range",
+            "id": "autoplay_speed",
+            "min": 0,
+            "max": 10,
+            "step": 1,            
+            "label": "Autoplay speed",
+            "default": 0
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "Background color",
+            "default": "#D9351F"
+        },
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "Border color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text color",
+            "default": "#000000"
+        }
+    ],
+    "blocks": [
+        {
+            "name": "Announce",
+            "type": "block",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "announce",
+                    "label": "Announce text",
+                    "default": "<p>Announce text</p>"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Announcement bar",
+            "blocks": [
+                    {
+                        "type": "block"
+                    },
+                    {
+                        "type": "block"
+                    },
+                    {
+                        "type": "block"
+                    }
+                ]
+        }
+    ],
+    "enabled_on": {
+        "groups": [
+            "header"
+        ]
+    }
+}
+{% endschema %}

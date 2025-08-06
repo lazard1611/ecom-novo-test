@@ -1,0 +1,7 @@
+@use '../mixins/buttons.scss' as *;
+
+.btn_base {
+    @include btn_style_black;
+    @include btn_size_normal;
+}
+

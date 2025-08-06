@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{ "template-example.css" | asset_url }}">
+
+<div class="example__wrapper">
+    <h2 class="example__title">{{ section.settings.title }}</h2>
+</div>
+
+<script src="{{ 'template-example.js' | asset_url }}" type="module" defer></script>
+
+{% schema %}
+    {
+        "name": "Example",
+        "class": "example",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Example"
+            }
+        ]
+    }
+{% endschema %}

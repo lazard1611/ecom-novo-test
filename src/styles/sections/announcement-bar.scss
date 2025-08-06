@@ -1,0 +1,26 @@
+@use '../variables.scss' as *;
+
+.announcement_bar {
+    padding: 0 var(--gl-indent);
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;    
+
+    .swiper {
+        max-width: 500px;
+    }  
+}
+
+.announcement_bar__container {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;    
+}
+
+.announcement_bar__announce {
+    text-align: center;
+
+    span {        
+        color: $white;
+    }
+}

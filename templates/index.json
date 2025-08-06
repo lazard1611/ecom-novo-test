@@ -1,0 +1,38 @@
+ {
+  "sections": {
+    "hero_jM9b6g": {
+      "type": "hero",
+      "blocks": {
+        "slide_6B33HU": {
+          "type": "slide",
+          "settings": {
+            "title": "Titile",
+            "description": "<p>Description</p>",
+            "btn_title": "Shop",
+            "btn_url": "",
+            "content_color": "",
+            "btn_color": "",
+            "overlay_color": "",
+            "overlay_opacity": 50,
+            "description_width": 510
+          }
+        }
+      },
+      "block_order": [
+        "slide_6B33HU"
+      ],
+      "name": "Hero slider",
+      "settings": {
+        "slider_autoplay_speed": 3
+      }
+    },
+    "ui_components_cU4awy": {
+      "type": "ui-components",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero_jM9b6g",
+    "ui_components_cU4awy"
+  ]
+}

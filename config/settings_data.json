@@ -1,0 +1,13 @@
+{
+  "current": {
+    "body_bg_color": "#FFFFFF",
+    "body_text_color": "#000000",
+    "body_link_color": "#571eff",
+    "form_text_color": "#000000",
+    "form_borders_color": "#ff0000",
+    "form_background_color": "#FFFFFF",
+    "content_for_index": [
+
+    ]
+  }
+}

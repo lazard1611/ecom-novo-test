@@ -1,0 +1,119 @@
+[
+	{
+		"name": "theme_info",
+		"theme_name": "Opklopper",
+		"theme_author": "Opklopper",
+		"theme_version": "1.1",
+		"theme_documentation_url": "https:\/\/opklopper.nl",
+		"theme_support_url": "https:\/\/opklopper.nl"
+	},
+	{
+		"name": "Favicon",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "favicon",
+				"label": "Favicon image",
+				"info": "Will be scaled down to 32px x 32px"
+			}
+		]
+	},
+	{
+		"name": "Wrappers",
+		"settings": [
+			{
+				"type": "range",
+				"id": "main_wrapper_width",
+				"label": "Main wrapper width",
+				"min": 0,
+				"max": 1920,
+				"step": 20,
+				"unit": "px",
+				"default": 1440,
+			}
+		]
+	},
+	{
+		"name": "Colors",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Main"
+			},
+			{
+				"type": "color",
+				"id": "body_bg_color",
+				"label": "Body backgound"
+			},
+			{
+				"type": "color",
+				"id": "body_text_color",
+				"label": "Body text"
+			},
+			{
+				"type": "color",
+				"id": "body_link_color",
+				"label": "Body link"
+			},
+			{
+				"type": "header",
+				"content": "Form fields"
+			},
+			{
+				"type": "color",
+				"id": "form_text_color",
+				"label": "Text"
+			}
+		]
+	},
+	{
+		"name": "Social media",
+		"settings": [
+			{
+				"type": "text",
+				"id": "social_twitter",
+				"label": "Facebook"
+			},
+			{
+				"type": "text",
+				"id": "social_facebook",
+				"label": "Facebook"
+			},
+			{
+				"type": "text",
+				"id": "social_linkedin",
+				"label": "LinkedIn"
+			},
+			{
+				"type": "text",
+				"id": "social_pinterest",
+				"label": "Pinterest"
+			},
+			{
+				"type": "text",
+				"id": "social_instagram",
+				"label": "Instagram"
+			},
+			{
+				"type": "text",
+				"id": "social_tumblr",
+				"label": "Tumblr"
+			},
+			{
+				"type": "text",
+				"id": "social_snapchat",
+				"label": "Snapchat"
+			},
+			{
+				"type": "text",
+				"id": "social_youtube",
+				"label": "YouTube"
+			},
+			{
+				"type": "text",
+				"id": "social_vimeo",
+				"label": "Vimeo"
+			}
+		]
+	}
+]

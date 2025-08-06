@@ -1,0 +1,41 @@
+@mixin form_el_checkbox {
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+    color: $black;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        content: '';
+    }
+
+    &:before {
+        border-radius: 4px;
+        border: 1px solid $gray;
+        transition: transform 0.2s, opacity 0.2s;
+        will-change: transform;
+        overflow: hidden;
+
+        .default-checkbox__element:checked + & {
+            display: block;
+            border-color: $black;
+
+            background-color: $black;
+        }
+    }
+
+    &::after {
+        border-bottom: 0.3rem solid $white;
+        border-right: 0.6rem solid $white;
+        transition: transform 0.2s, opacity 0.2s;
+        transform: rotateZ(40deg) scale(0.5) scaleX(0.5) translate(-1rem, -1px);
+        z-index: 1;
+    }
+}

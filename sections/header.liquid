@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
+
+<style>		
+	{%- if section.settings.bg != blank -%}
+		.header {
+			--header-bg: {{ section.settings.bg }}
+		}
+	{%- endif -%}
+
+	{%- if section.settings.text_color != blank -%}
+		.header__row {
+			color: {{ section.settings.text_color }}
+		}
+	{%- endif -%}
+
+	{%- if section.settings.text_color_hover != blank -%}
+		.header {			
+			--header-text-color-hover: {{ section.settings.text_color_hover }}
+		}
+	{%- endif -%}
+	
+</style>
+
+<div class="header__wrapper">
+	<div class="header__row">
+        <a href="{{routes.root_url}}" class="header__logo">
+            {%- if section.settings.logo != blank -%}
+                <img loading="lazy" width="auto" height="auto" src="{{section.settings.logo |  image_url }}" alt="{{shop.name}}" class="header__logo_img">
+            {%- else -%}
+                <span class="header__logo_text">{{ shop.name }}</span>
+            {%- endif -%}            
+        </a>
+        <nav class="header__nav">            
+            <ul class="header__nav_list">   
+                {% for link in section.settings.link_list_id.links %} 					 
+					{% if link.title != blank %}
+						<li class="header__nav_item">
+							{% if link.links.size == 0 %}
+								<a class='header__nav_link' href='{{ link.url }}'>{{ link.title }}</a>
+							{% else %}
+								<div class='drop js-drop-menu'>
+									<button class='drop__btn' type="button">
+										<span class='drop__btn_text'>{{ link.title }}</span>
+										<span class='drop__btn_icon'>{% render 'icons', filename: 'chevron' %}</span>
+									</button>
+									<div class='drop_menu'>
+										<ul class='drop_menu__list'>
+											{% for child_link in link.links %}
+												<li class='drop_menu__item'>
+													<a class='drop_menu__link' href='{{ child_link.url }}'>{{ child_link.title }}</a>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>  
+								</div>                    
+							{% endif %}                
+						</li>   
+					{% endif %}                                       
+				{% endfor %}                
+			</ul>                
+		</nav>       
+
+        <div class="header__aside">
+            <div class="header__aside_list_wrap">
+                <ul class="header__aside_list">
+                    <li class="header__aside_item">
+                        <a href="{{ routes.account_url }}" class="header__aside_link">
+                            {% render 'icons', filename: 'login' %}
+                        </a>
+                    </li>
+                    <li class="header__aside_item">
+                        <a href="{{ routes.cart_url }}" class="header__aside_link">
+                            {% render 'icons', filename: 'box' %}                        
+                        </a>
+                        <span class="header__aside_prod_count" data-item-count>
+                            {% assign totalCount = 0 %}
+                            {% for item in cart.items %}
+                                {% if item.properties._type == blank or item.properties._type == 'main' or item.properties._type == 'box' %}
+                                    {% assign totalCount = totalCount | plus: item.quantity %}
+                                {% endif %}
+                            {% endfor %}
+                            {{ totalCount }}
+                        </span>
+                    </li>  
+                </ul>
+            </div>
+            
+            
+            <button class="header__menu_trigger js-header-trigger" type="button" aria-label="Toggle menu"><span></span></button>
+        </div>
+    </div>	
+</div>
+
+<script type="module" src="{{ 'header.js' | asset_url }}"></script>
+
+{% schema %}
+{
+	"name": "Header",
+	"class": "header js-header",
+	"tag": "header",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "logo",
+			"label": "Header logo"
+		},				
+		{
+			"type": "link_list",
+			"id": "link_list_id",
+			"label": "Navigation header"
+		},
+		{
+			"type": "header",
+			"content": "Style"
+		},
+		{
+			"type": "color",
+			"id": "bg",
+			"label": "Background color"
+		},
+		{
+			"type": "color",
+			"id": "bg_scroll",
+			"label": "Background color for scroll"
+		},
+		{
+			"type": "color",
+			"id": "color_hover_scroll",
+			"label": "Hover color for scroll"
+		},
+		{
+			"type": "color",
+			"id": "text_color",
+			"label": "Text color"
+		},
+		{
+			"type": "color",
+			"id": "text_color_hover",
+			"label": "Text color hover"
+		}		
+	]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+@use '../mixins/form-input' as *;
+
+.form_el_label {
+    @include form_el_label;
+}
+
+.form_el_default {
+    @include form_el_default;
+}	
+
