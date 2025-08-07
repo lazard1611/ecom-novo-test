@@ -69,7 +69,7 @@
         height: calc(100svh);
 
         background-color: $white;
-        padding: 100px var(--gl-indent) 28px;
+        padding: var(--header-height) var(--gl-indent) 30px;
         transition: transform 0.5s ease;
         pointer-events: none;
         transform: translateX(-100%);

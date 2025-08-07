@@ -1,6 +1,24 @@
 <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
 
-<div class="footer__wrapper">{{ section.settings.title }}</div>
+<div class="footer__wrapper">
+	<div class="footer__social">
+		<div class="footer__text">
+			Lazarev Dmytro
+		</div>
+
+		<a href="https://t.me/DmytroLazarev" class="footer__social_link" target="_blank" rel="noopener">
+			<div class="footer__social_icon">
+				{%- render 'icons', filename: 'telegram' -%}		
+			</div>	
+		</a>
+
+		<a href="mailto:lazard1611@gmail.com" class="footer__social_link">
+			<div class="footer__social_icon">
+				{%- render 'icons', filename: 'email' -%}		
+			</div>	
+		</a>
+	</div>
+</div>
 
 <script type="module" src="{{ 'footer.js' | asset_url }}"></script>
 

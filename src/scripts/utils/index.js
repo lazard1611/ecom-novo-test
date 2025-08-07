@@ -73,15 +73,14 @@ export function getWindowSize() {
     };
 }
 
-export const onWindowResize = (cb) => {
-    if (!cb && !isFunction(cb)) return;
+export const onWindowResize = (cb, delay = 15) => {
+    if (!cb || typeof cb !== 'function') return;
 
-    const handleResize = () => {
+    const handleResize = debounce(delay, () => {
         cb();
-    };
+    });
 
-    window.addEventListener('resize', debounce(15, handleResize));
-
+    window.addEventListener('resize', handleResize);
     handleResize();
 };
 

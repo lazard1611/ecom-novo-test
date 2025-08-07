@@ -1,4 +1,4 @@
- {
+{
   "sections": {
     "hero_jM9b6g": {
       "type": "hero",
@@ -26,13 +26,88 @@
         "slider_autoplay_speed": 3
       }
     },
+    "marquee_products_Wdtq6A": {
+      "type": "marquee-products",
+      "blocks": {
+        "block_cnTDjA": {
+          "type": "block",
+          "settings": {
+            "product_id": "1",
+            "image": "shopify://shop_images/1_f32225ec-3aa0-49c3-9b1c-bb8ae80365d6.webp",
+            "title": "Black leather chair",
+            "description": "Modern black leather chair with an ergonomic design — a perfect blend of style and comfort. High backrest, soft upholstery, and durable construction for everyday use."
+          }
+        },
+        "block_WbgcDT": {
+          "type": "block",
+          "settings": {
+            "product_id": "2",
+            "image": "shopify://shop_images/5.webp",
+            "title": "Lamp for work",
+            "description": "Sleek and functional desk lamp designed for productive work. Adjustable brightness, flexible neck, and energy-efficient LED lighting provide optimal focus and comfort throughout the day."
+          }
+        },
+        "block_hmt9wk": {
+          "type": "block",
+          "settings": {
+            "product_id": "3",
+            "title": "",
+            "description": ""
+          }
+        },
+        "block_MMFRbb": {
+          "type": "block",
+          "settings": {
+            "product_id": "4",
+            "title": "",
+            "description": ""
+          }
+        },
+        "block_zUULeA": {
+          "type": "block",
+          "settings": {
+            "product_id": "5",
+            "title": "",
+            "description": ""
+          }
+        },
+        "block_ka44dT": {
+          "type": "block",
+          "settings": {
+            "product_id": "",
+            "title": "",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_cnTDjA",
+        "block_WbgcDT",
+        "block_hmt9wk",
+        "block_MMFRbb",
+        "block_zUULeA",
+        "block_ka44dT"
+      ],
+      "name": "Marquee products",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "autoplay_speed": 5,
+        "section_bg_color": "#ffffff",
+        "text_color": "#000000"
+      }
+    },
     "ui_components_cU4awy": {
       "type": "ui-components",
+      "disabled": true,
       "settings": {}
     }
   },
   "order": [
     "hero_jM9b6g",
+    "marquee_products_Wdtq6A",
     "ui_components_cU4awy"
   ]
 }

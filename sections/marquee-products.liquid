@@ -1,51 +1,97 @@
+{% render "set-sections-paddings", section_data: section %}
+
+<style>
+    #shopify-section-{{ section.id }}.marquee_products {
+        background-color: {{ section.settings.section_bg_color }};
+    }
+
+    #shopify-section-{{ section.id }}.product_card__content_link {
+        color: {{ section.settings.text_color }};
+    }
+</style>
+
 {% if section.blocks.size > 0 %}
-    <link rel="stylesheet" href="{{ "marquee-products.css" | asset_url }}">
+    <link rel="stylesheet" href="{{ 'marquee-products.css' | asset_url }}">
 
     <div class="marquee_products__container">
         {% if section.blocks.size != blank %}
-            <div class="swiper js-marquee-products">
-                <div class="swiper-wrapper">
-                    {% for block in section.blocks %}
-                        {%- assign autoplay_speed = section.settings.autoplay_speed | times: 1000 -%}
-                        <div data-swiper-autoplay={{ autoplay_speed }} class="marquee_products__item slide swiper-slide">
-                            {%- render 'product-card', product: block -%}
-                        </div>
-                    {% endfor %}
-                </div>
+            <div data-speed="{{ section.settings.autoplay_speed }}" class="marquee_products__wrap js-marquee-products-list">                
+                {% for block in section.blocks %}
+                    <div class="marquee_products__item js-marquee-item" data-product-id="{{ block.settings.product_id | escape }}">
+                        {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                            <div class="marquee_products__item_in">
+                                {%- render 'product-card', product: block.settings, num: num -%}
+                            </div>
+                    </div>
+                {% endfor %}
             </div>
         {% endif %}
     </div>
 
     {% if section.blocks.size > 1 %}
-        <script type="module" src="{{ "marquee-products.js" | asset_url }}"></script>
+        <script type="module" src="{{ 'marquee-products.js' | asset_url }}"></script>
     {% endif %}
 {% endif %}
 
 {% schema %}
     {
-        "name": "Marquee products",    
-        "class": "marquee_products",
+        "name": "Marquee products",
+        "class": "marquee_products js-marquee-products",
         "settings": [
+            {
+                "type": "range",
+                "id": "padding_top",
+                "min": 0,
+                "max": 200,
+                "step": 5,
+                "unit": "px",
+                "label": "Padding top",
+                "default": 60
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom",
+                "min": 0,
+                "max": 200,
+                "step": 5,
+                "unit": "px",
+                "label": "Padding bottom",
+                "default": 60
+            },
+            {
+                "type": "range",
+                "id": "padding_top_mobile",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "px",
+                "label": "Padding top mobile",
+                "default": 30
+            },
+            {
+                "type": "range",
+                "id": "padding_bottom_mobile",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "unit": "px",
+                "label": "Padding bottom mobile",
+                "default": 30
+            },
             {
                 "type": "range",
                 "id": "autoplay_speed",
                 "min": 0,
-                "max": 10,
-                "step": 1,            
+                "max": 40,
+                "step": 1,
                 "label": "Autoplay speed",
-                "default": 0
+                "default": 20
             },
             {
                 "type": "color",
-                "id": "background_color",
+                "id": "section_bg_color",
                 "label": "Background color",
-                "default": "#D9351F"
-            },
-            {
-                "type": "color",
-                "id": "border_color",
-                "label": "Border color",
-                "default": "#000000"
+                "default": "#FFFFFF"
             },
             {
                 "type": "color",
@@ -58,7 +104,6 @@
             {
                 "name": "Product card",
                 "type": "block",
-                "limit": 6,
                 "settings": [
                     {
                         "type": "text",
@@ -69,7 +114,7 @@
                         "type": "image_picker",
                         "id": "image",
                         "label": "Product Image"
-                    },                    
+                    },
                     {
                         "type": "text",
                         "id": "title",
@@ -93,10 +138,9 @@
                         { "type": "block" },
                         { "type": "block" },
                         { "type": "block" },
-                        { "type": "block" }                        
+                        { "type": "block" }
                     ]
             }
-        ]        
+        ]
     }
-    {% endschema %}
-    
+{% endschema %}

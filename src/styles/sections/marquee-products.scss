@@ -1,1 +1,89 @@
 @use '../snippets/product-card.scss';
+@use '../variables.scss' as *;
+@use '../mixins/global-mixins.scss' as *;
+
+:root {
+    
+    @include breakPoints($desktop, $laptop) {
+        --marquee-products-item-width: 20%;        
+    }
+
+    @include breakPoints($laptop, $tabletMd) {
+        --marquee-products-item-width: 25%;
+    }
+
+    // @include breakPoints($tabletMd, $tablet) {
+    //     width: calc(100% / 3);
+    // }
+
+    // @include breakPoints($tablet, $mobile) {
+    //     width: 50%;
+    // }
+
+    // @include breakPoints($mobile) {
+    //     width: 100%;
+    // } 
+}
+
+.marquee_products {
+    overflow: hidden;    
+}
+
+.marquee_products__container {
+    width: 100vw;        
+}
+
+.marquee_products__wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;   
+    align-items: stretch;    
+    // animation: marquee 20s linear infinite;
+    will-change: transform;    
+
+    // &:hover,
+    // &:focus-within {
+    //     animation-play-state: paused;
+    // }   
+}
+
+.marquee_products__item {    
+    flex-shrink: 0;
+    padding-right: 20px;    
+    
+    @include breakPoints($desktop, min) {
+        width: calc(100% / 6);                
+    }
+
+    @include breakPoints($desktop, $laptop) {
+        width: 20%;        
+    }
+
+    @include breakPoints($laptop, $tabletMd) {
+        width: 25%;
+    }
+
+    @include breakPoints($tabletMd, $tablet) {
+        width: calc(100% / 3);
+    }
+
+    @include breakPoints($tablet, $mobile) {
+        width: 50%;
+    }
+
+    @include breakPoints($mobile) {
+        width: 100%;
+    }
+}
+
+.marquee_products__item_in {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 4px 4px 10px rgba($color: #000000, $alpha: 0.6);
+}
+
+// @keyframes marquee {
+//     0% { transform: translateX(0); }
+//     100% { transform: translateX(-100%); }
+// }
