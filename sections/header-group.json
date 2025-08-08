@@ -1,4 +1,3 @@
-
  {
   "name": "header",
   "type": "header",
@@ -30,6 +29,7 @@
         "block_WxMTJn",
         "block_RqWFx3"
       ],
+      "disabled": true,
       "name": "Announcement bar",
       "settings": {
         "autoplay_speed": 3,
@@ -40,8 +40,8 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
-        "header_fix": true,
         "link_list_id": "main-menu",
         "bg": "#ffffff",
         "bg_scroll": "",
