@@ -3,34 +3,52 @@
 @use '../mixins/global-mixins.scss' as *;
 
 :root {
+    @include breakPoints($desktop, min) {
+        --marquee-products-item-width: 0%;        
+    }
     
     @include breakPoints($desktop, $laptop) {
         --marquee-products-item-width: 20%;        
     }
 
     @include breakPoints($laptop, $tabletMd) {
-        --marquee-products-item-width: 25%;
+        --marquee-products-item-width: 50%;
     }
 
-    // @include breakPoints($tabletMd, $tablet) {
-    //     width: calc(100% / 3);
-    // }
+    @include breakPoints($tabletMd, $tablet) {
+        --marquee-products-item-width: calc((100% / 3)* 3);
+    }
 
-    // @include breakPoints($tablet, $mobile) {
-    //     width: 50%;
-    // }
+    @include breakPoints($tablet, $mobile) {
+        --marquee-products-item-width: 200%;
+    }
 
-    // @include breakPoints($mobile) {
-    //     width: 100%;
-    // } 
+    @include breakPoints($mobile) {
+        --marquee-products-item-width: 350%;
+    } 
 }
 
 .marquee_products {
     overflow: hidden;    
 }
 
+.marquee_products__title {
+    text-align: center;
+
+    @include breakPoints($tablet, min) {
+        font-size: 50px;
+    }   
+    
+    @include breakPoints($tablet) {
+        font-size: 30px;
+    }
+
+    &:not(:last-child) { margin-bottom: 20px; }
+}
+
 .marquee_products__container {
-    width: 100vw;        
+    width: 100vw; 
+    &:not(:last-child) { margin-bottom: 50px; }       
 }
 
 .marquee_products__wrap {
@@ -38,13 +56,16 @@
     flex-wrap: nowrap;
     justify-content: flex-start;   
     align-items: stretch;    
-    // animation: marquee 20s linear infinite;
-    will-change: transform;    
+    will-change: transform;
+    
+    .marquee_products__container--css_mod & {
+        animation: marquee 20s linear infinite;
 
-    // &:hover,
-    // &:focus-within {
-    //     animation-play-state: paused;
-    // }   
+        &:hover,
+        &:focus-within {
+            animation-play-state: paused;
+        } 
+    }      
 }
 
 .marquee_products__item {    
@@ -72,8 +93,8 @@
     }
 
     @include breakPoints($mobile) {
-        width: 100%;
-    }
+        width: 75%;
+    } 
 }
 
 .marquee_products__item_in {
@@ -83,7 +104,7 @@
     box-shadow: 4px 4px 10px rgba($color: #000000, $alpha: 0.6);
 }
 
-// @keyframes marquee {
-//     0% { transform: translateX(0); }
-//     100% { transform: translateX(-100%); }
-// }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% - var(--marquee-products-item-width))); }
+}

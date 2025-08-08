@@ -13,9 +13,39 @@
 {% if section.blocks.size > 0 %}
     <link rel="stylesheet" href="{{ 'marquee-products.css' | asset_url }}">
 
+    <h2 class="marquee_products__title">JS variant</h2>
+
     <div class="marquee_products__container">
         {% if section.blocks.size != blank %}
             <div data-speed="{{ section.settings.autoplay_speed }}" class="marquee_products__wrap js-marquee-products-list">                
+                {% for block in section.blocks %}
+                    <div class="marquee_products__item js-marquee-item" data-product-id="{{ block.settings.product_id | escape }}">
+                        {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+                            <div class="marquee_products__item_in">
+                                {%- render 'product-card', product: block.settings, num: num -%}
+                            </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <h2 class="marquee_products__title">CSS variant</h2>
+    <style>
+        .marquee_products__wrap {
+            animation-duration: {{ 40 | minus: section.settings.autoplay_speed }}s!important;
+        }
+    </style>        
+
+    {%- unless section.settings.autoplay_speed == 0 -%}
+        {%- assign wrapClass = 'marquee_products__container--css_mod' -%}
+    {%- else -%}
+        {%- assign wrapClass = '' -%}
+    {%- endunless -%}
+    
+    <div class="marquee_products__container {{ wrapClass }}">
+        {% if section.blocks.size != blank %}
+            <div class="marquee_products__wrap js-marquee-products-list">                
                 {% for block in section.blocks %}
                     <div class="marquee_products__item js-marquee-item" data-product-id="{{ block.settings.product_id | escape }}">
                         {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
@@ -38,6 +68,10 @@
         "name": "Marquee products",
         "class": "marquee_products js-marquee-products",
         "settings": [
+            {
+                "type": "header",
+                "content": "Spacing"
+            },
             {
                 "type": "range",
                 "id": "padding_top",
@@ -86,6 +120,10 @@
                 "step": 1,
                 "label": "Autoplay speed",
                 "default": 20
+            },
+            {
+                "type": "header",
+                "content": "Colors"
             },
             {
                 "type": "color",

@@ -2,44 +2,46 @@ import '../../styles/sections/marquee-products.scss';
 import { debounce } from '../utils/index.js';
 import gsap from "gsap";
 
-document.addEventListener("DOMContentLoaded", () => {
+const SELECTORS = {
+    list: '.js-marquee-products-list',
+    item: '.js-marquee-item',
+    price: '.js-product-price'
+}
 
-    const SELECTORS = {
-        list: '.js-marquee-products-list',
-        item: '.js-marquee-item',
-        price: '.js-product-price'
-    }
+const setCloneItems = () => {
+    const marqueeLists = document.querySelectorAll(SELECTORS.list);
+    if (!marqueeLists.length) return;
 
-    const marqueeList = document.querySelector(SELECTORS.list);
-    if (!marqueeList) return;
-    const speed = +marqueeList.dataset.speed;
-    const formatspeed = 40 - speed;
-    let tl;
-
-    const setCloneItems = () => {
+    marqueeLists.forEach((marqueeList) => {
         const items = marqueeList.querySelectorAll(SELECTORS.item);
         if (!items.length) return;
         items.forEach(item => {
             const clone = item.cloneNode(true);
             marqueeList.appendChild(clone);
         });
-    }
+    })    
+}
 
-    setCloneItems();
+const marqueeJsVariant = () => {
+    const marqueeList = document.querySelector('[data-speed]');
+    if (!marqueeList) return;    
+    const speed = +marqueeList.dataset.speed;
+    const formatSpeed = 40 - speed;
+    let tl; 
 
     const initAnimation = () => {
-        const items = marqueeList.querySelectorAll(SELECTORS.item);
+        if (speed == 0) return;
+
         tl = gsap.timeline({ repeat: - 1 });
+        const items = marqueeList.querySelectorAll(SELECTORS.item);
 
         let totalWidth = Array.from(items).reduce((sum, item) => {
             return sum + (item.offsetWidth || 0);
-        }, 0);
+        }, 0);        
 
-        if (speed == 0) return;
-
-        tl.to(SELECTORS.list,
+        tl.to(marqueeList,
             {
-                duration: formatspeed,
+                duration: formatSpeed,
                 ease: "none",
                 x: -totalWidth / 2
             }
@@ -71,10 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
             tl.play();
         }
     });
+}
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    setCloneItems();
+    marqueeJsVariant();
+    
     const priceElements = document.querySelectorAll(SELECTORS.price);
 
-    priceElements.forEach(element => {
+    priceElements.forEach((element) => {
         const productId = element.closest(SELECTORS.item).dataset.productId;
         if (productId) {
             fetch(`https://fakestoreapi.com/products/${productId}`)

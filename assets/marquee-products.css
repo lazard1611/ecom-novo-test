@@ -51,6 +51,11 @@
 /* ===================================================== FONTS ===================================================== */
 /* ===================================================== COLORS ==================================================== */
 /* ===================================================== FORM ==================================================== */
+@media screen and (min-width: 1440px) {
+  :root {
+    --marquee-products-item-width: 0%;
+  }
+}
 @media (max-width: 1439px) and (min-width: 1200px) {
   :root {
     --marquee-products-item-width: 20%;
@@ -58,7 +63,22 @@
 }
 @media (max-width: 1199px) and (min-width: 990px) {
   :root {
-    --marquee-products-item-width: 25%;
+    --marquee-products-item-width: 50%;
+  }
+}
+@media (max-width: 989px) and (min-width: 768px) {
+  :root {
+    --marquee-products-item-width: calc((100% / 3)* 3);
+  }
+}
+@media (max-width: 767px) and (min-width: 480px) {
+  :root {
+    --marquee-products-item-width: 200%;
+  }
+}
+@media screen and (max-width: 479px) {
+  :root {
+    --marquee-products-item-width: 350%;
   }
 }
 
@@ -66,8 +86,28 @@
   overflow: hidden;
 }
 
+.marquee_products__title {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .marquee_products__title {
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .marquee_products__title {
+    font-size: 30px;
+  }
+}
+.marquee_products__title:not(:last-child) {
+  margin-bottom: 20px;
+}
+
 .marquee_products__container {
   width: 100vw;
+}
+.marquee_products__container:not(:last-child) {
+  margin-bottom: 50px;
 }
 
 .marquee_products__wrap {
@@ -76,6 +116,12 @@
   justify-content: flex-start;
   align-items: stretch;
   will-change: transform;
+}
+.marquee_products__container--css_mod .marquee_products__wrap {
+  animation: marquee 20s linear infinite;
+}
+.marquee_products__container--css_mod .marquee_products__wrap:hover, .marquee_products__container--css_mod .marquee_products__wrap:focus-within {
+  animation-play-state: paused;
 }
 
 .marquee_products__item {
@@ -109,7 +155,7 @@
 }
 @media screen and (max-width: 479px) {
   .marquee_products__item {
-    width: 100%;
+    width: 75%;
   }
 }
 
@@ -118,4 +164,13 @@
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - var(--marquee-products-item-width)));
+  }
 }
